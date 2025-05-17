@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anime Villain Quiz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #0f0f0f, #1a1a1a);
+      color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      color: crimson;
+      font-size: 3rem;
+      letter-spacing: 2px;
+    }
+
+    .quiz-container {
+      background-color: #222;
+      padding: 30px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 0 20px crimson;
+    }
+
+    .question {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .option {
+      background: #333;
+      border: 2px solid crimson;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .option:hover {
+      background: crimson;
+      color: #fff;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Anime Villain Quiz</h1>
+    <p>Can you guess which anime villain said what?</p>
+  </header>
+
+  <div class="quiz-container">
+    <div class="question">"The world shall know pain!"</div>
+    <div class="options">
+      <div class="option">Madara Uchiha</div>
+      <div class="option">Pain (Nagato)</div>
+      <div class="option">Aizen</div>
+      <div class="option">Dio Brando</div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Anime Villain Quiz • Built by Yoi-Nakama and Sophia 🖤
+  </footer>
+</body>
+  </html>
+  
