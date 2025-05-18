@@ -1631,5 +1631,192 @@ Just say the name, and I’ll bring them to life 😈
 
 
 
+YOOO 💀🔥
+NOW you’re bringing in the **tormented kings** of pain, belief, and BURNING BETRAYAL—
+Geto Suguru and Dabi (aka *Trauma-sama* and *Flame Daddy*).
+
+Let’s go all-out detailed like before—3 forms, quotes, music, dark aesthetic, full villain dev format style.
+Brace yourself brom, 'cause this is gonna be EMOTIONAL and DEADLY 🔥😤
+
+---
+
+## 🧨 Villain #6: Geto Suguru – Multi-Form Setup
+
+### 👿 Villain Name: **Suguru Geto**
+
+From: *Jujutsu Kaisen*
+Vibe: Former best friend, anti-hero turned extremist, cursed soul
+
+---
+
+### 🧑‍🎓 Form 1: **Jujutsu Student Geto**
+
+* **Description**: The kind-hearted sorcerer who once fought for good alongside Gojo. Still idealistic, still loyal.
+* **Name:** `Jujutsu Student Geto`
+* **Image:** `geto_form1.jpg` *(Younger Geto in uniform, with a warm smile)*
+* **Quote:** `"We save people... That’s what jujutsu sorcerers do, right?"`
+* **Background Color:** `#3d3d5c` (Muted indigo – innocence fading)
+* **Music:** `geto1.mp3` *(Melancholic strings + quiet temple bells)*
+
+---
+
+### ☯️ Form 2: **True Believer Geto**
+
+* **Description**: The fallen idealist. He’s now convinced non-sorcerers are the root of all evil. Calm, charismatic, dangerous.
+* **Name:** `True Believer Geto`
+* **Image:** `geto_form2.jpg` *(Black robe, smug expression, cursed spirits behind him)*
+* **Quote:** `"I will create a world of jujutsu sorcerers. Even if it means killing every last monkey."`
+* **Background Color:** `#2a2a2a` (Dark steel gray – ideology hardened)
+* **Music:** `geto2.mp3` *(Monk chants, warped flute, slow heartbeat)*
+
+---
+
+### 🧟 Form 3: **Fake Geto (Kenjaku)**
+
+* **Description**: Post-mortem puppet. Now possessed by Kenjaku, using Geto’s body. Calm on the outside, chaos underneath.
+* **Name:** `Kenjaku in Geto’s Body`
+* **Image:** `geto_form3.jpg` *(Stitched forehead, cursed spirits all around)*
+* **Quote:** `"With this body and its legacy… I will remake humanity."`
+* **Background Color:** `#1a0000` (Deep cursed blood red)
+* **Music:** `geto3.mp3` *(Reverse speech, high-pitched echo, cursed pulses)*
+
+---
+
+### ✅ JavaScript Object:
+
+```js
+results["Suguru Geto"] = [
+  {
+    name: "Jujutsu Student Geto",
+    image: "geto_form1.jpg",
+    quote: "We save people... That’s what jujutsu sorcerers do, right?",
+    bgColor: "#3d3d5c",
+    music: "geto1.mp3"
+  },
+  {
+    name: "True Believer Geto",
+    image: "geto_form2.jpg",
+    quote: "I will create a world of jujutsu sorcerers. Even if it means killing every last monkey.",
+    bgColor: "#2a2a2a",
+    music: "geto2.mp3"
+  },
+  {
+    name: "Kenjaku in Geto’s Body",
+    image: "geto_form3.jpg",
+    quote: "With this body and its legacy… I will remake humanity.",
+    bgColor: "#1a0000",
+    music: "geto3.mp3"
+  }
+];
+```
+
+---
+
+### 🎭 UX Elements:
+
+* Form 1: Calm fade-in with temple birds chirping
+* Form 2: Scroll reveal with cursed spirits creeping in
+* Form 3: Forehead stitch glow + whispering curses
+
+---
+
+## 🔥 Villain #7: Dabi (Toya Todoroki) – Multi-Form Setup
+
+### 👿 Villain Name: **Dabi / Toya Todoroki**
+
+From: *My Hero Academia*
+Vibe: Vengeance incarnate, tragic fire child, broken heart under the flames
+
+---
+
+### 🧒 Form 1: **Toya Todoroki**
+
+* **Description**: Before becoming Dabi. Innocent child, craving love and validation, broken by Endeavor’s ambition.
+* **Name:** `Toya Todoroki`
+* **Image:** `dabi_form1.jpg` *(Young Toya with hopeful eyes and fire around his hand)*
+* **Quote:** `"I just wanted you to look at me, Dad..."`
+* **Background Color:** `#004466` (Sad icy blue – innocence and cold neglect)
+* **Music:** `dabi1.mp3` *(Child piano + soft wind + sad lullaby notes)*
+
+---
+
+### 🔥 Form 2: **Dabi the Avenger**
+
+* **Description**: Fully consumed by pain and revenge. Body burnt, identity hidden, personality unstable.
+* **Name:** `Dabi the Avenger`
+* **Image:** `dabi_form2.jpg` *(Stitched skin, blue flames erupting, intense glare)*
+* **Quote:** `"This is what you made me, Endeavor! Are you proud now?!"`
+* **Background Color:** `#0d0d0d` (Charred black)
+* **Music:** `dabi2.mp3` *(Glitchy screeches, fire crackling, heavy metal tones)*
+
+---
+
+### 💥 Form 3: **True Identity Revealed (Toya Returns)**
+
+* **Description**: The moment he reveals he’s Toya to the world. Everything burns — including his soul.
+* **Name:** `Toya Reborn in Flames`
+* **Image:** `dabi_form3.jpg` *(Hair white, full rage, flames bursting, eyes hollow)*
+* **Quote:** `"I'm the one who survived your hell, Dad. And now, I'll be your legacy's end."`
+* **Background Color:** `#8e0000` (Burning crimson – pure vengeance)
+* **Music:** `dabi3.mp3` *(Opera vocals + crashing fire + slow distorted violins)*
+
+---
+
+### ✅ JavaScript Object:
+
+```js
+results["Dabi"] = [
+  {
+    name: "Toya Todoroki",
+    image: "dabi_form1.jpg",
+    quote: "I just wanted you to look at me, Dad...",
+    bgColor: "#004466",
+    music: "dabi1.mp3"
+  },
+  {
+    name: "Dabi the Avenger",
+    image: "dabi_form2.jpg",
+    quote: "This is what you made me, Endeavor! Are you proud now?!",
+    bgColor: "#0d0d0d",
+    music: "dabi2.mp3"
+  },
+  {
+    name: "Toya Reborn in Flames",
+    image: "dabi_form3.jpg",
+    quote: "I'm the one who survived your hell, Dad. And now, I'll be your legacy's end.",
+    bgColor: "#8e0000",
+    music: "dabi3.mp3"
+  }
+];
+```
+
+---
+
+### 🧨 UX Spice:
+
+* Form 1: Snow falling gently, cold piano theme
+* Form 2: Fire ignites the screen from below
+* Form 3: Flame burst + scream FX + red overlay transition
+
+---
+
+**DAAAAAAMN🔥💀**
+Geto and Dabi hit HARD, bro. The **emotions**, the **revenge**, the **style** — top-tier tragic villains.
+
+Wanna hit **Dio** next? Or **Garou**, **Frieza**, **Mahito**, or even cook up an **OC villain** based on your world?
+Say the word, brom — I got chills and fire ready 😤
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
