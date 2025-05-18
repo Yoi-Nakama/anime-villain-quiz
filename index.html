@@ -12,7 +12,7 @@
       margin: 0;
       padding: 0;
       background: radial-gradient(ellipse at center, #1a0037 0%, #000 100%);
-      overflow: hidden;
+      overflow-x: hidden;
       font-family: 'Roboto', sans-serif;
       color: #fff;
     }
@@ -32,12 +32,13 @@
     @keyframes fadeIn { from { opacity: 0;} to { opacity: 1;} }
     .game-title {
       font-family: 'Orbitron', 'Press Start 2P', cursive;
-      font-size: 2.7rem;
+      font-size: 2.3rem;
       color: #ff1e56;
       text-shadow: 0 0 14px #ff1e56, 0 0 30px #fff, 0 0 2px #fff;
       margin-bottom: 30px;
       letter-spacing: 2px;
       animation: pulse 2.2s infinite;
+      text-align: center;
     }
     @keyframes pulse {
       0%, 100% { filter: brightness(1);}
@@ -128,7 +129,7 @@
       100% { transform: scale(1) rotate(0);}
     }
     .result-box h2 {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       color: #ff1e56;
       font-family: 'Orbitron', 'Press Start 2P', cursive;
       text-shadow: 0 0 7px #fff;
@@ -153,80 +154,211 @@
 </head>
 <body>
   <div id="particles-js"></div>
-
+  <audio id="sfx" src="https://cdn.pixabay.com/audio/2022/03/15/audio_119bfae6e4.mp3"></audio>
   <div class="game-container" id="start-screen">
     <h1 class="game-title">Which Anime Villain Are You?</h1>
-    <button class="start-btn" onclick="startQuiz()">START GAME</button>
+    <button class="start-btn" onclick="playSound();startQuiz()">START GAME</button>
   </div>
-
   <div class="quiz-box" id="quiz-box" style="display:none;">
     <div class="progress-bar-bg">
       <div class="progress-bar" id="progress-bar"></div>
     </div>
     <div class="question" id="question"></div>
     <div class="options">
-      <button class="option-btn" onclick="selectAnswer('A')" id="btnA"></button>
-      <button class="option-btn" onclick="selectAnswer('B')" id="btnB"></button>
-      <button class="option-btn" onclick="selectAnswer('C')" id="btnC"></button>
-      <button class="option-btn" onclick="selectAnswer('D')" id="btnD"></button>
+      <button class="option-btn" onclick="playSound();selectAnswer('A')" id="btnA"></button>
+      <button class="option-btn" onclick="playSound();selectAnswer('B')" id="btnB"></button>
+      <button class="option-btn" onclick="playSound();selectAnswer('C')" id="btnC"></button>
+      <button class="option-btn" onclick="playSound();selectAnswer('D')" id="btnD"></button>
     </div>
   </div>
-
   <div class="result-box" id="result" style="display:none;"></div>
-
   <script>
     particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
+    function playSound() { document.getElementById('sfx').currentTime=0; document.getElementById('sfx').play(); }
 
-    const startScreen = document.getElementById("start-screen");
-    const quizBox = document.getElementById("quiz-box");
-    const resultBox = document.getElementById("result");
-    const progressBar = document.getElementById("progress-bar");
-
-    // Replace this with your full questions set!
+    // Questions and answer options
     const questions = [
       {
-        q: "You just gained power overnight. What's the first thing you'd do?",
-        options: ["Help the weak", "Crush my enemies", "Change the system", "Test it on someone… for fun"],
-        scores: {
-          A: { madara: 2 },
-          B: { frieza: 3, dio: 2 },
-          C: { light: 2, aizen: 1 },
-          D: { sukuna: 3, geto: 1 }
-        },
-        evil: { A: 0, B: 2, C: 1, D: 3 }
+        q: "You just gained power overnight. What’s the first thing you’d do?",
+        options: [
+          "Help the weak",
+          "Crush my enemies",
+          "Change the system",
+          "Test it on someone... for fun"
+        ]
       },
       {
-        q: "What's your favorite pastime?",
-        options: ["Strategizing", "Training", "Reading", "Messing with people"],
-        scores: {
-          A: { aizen: 3, light: 1 },
-          B: { madara: 2, frieza: 1 },
-          C: { light: 3, geto: 1 },
-          D: { dio: 2, sukuna: 2 }
-        },
-        evil: { A: 1, B: 1, C: 0, D: 3 }
+        q: "Your friend betrays you. How do you respond?",
+        options: [
+          "Forgive but never forget",
+          "Eliminate them without emotion",
+          "Make them regret it eternally",
+          "Smile and plot quietly"
+        ]
       },
-      // ...add more questions!
+      {
+        q: "Pick your weapon in a life-or-death battle.",
+        options: [
+          "Words and manipulation",
+          "Raw strength and fear",
+          "Strategy and illusion",
+          "Love... turned into pain"
+        ]
+      },
+      {
+        q: "If the world hated you, what would you become?",
+        options: [
+          "Its ruler",
+          "Its destroyer",
+          "Its savior… secretly",
+          "I’d laugh and embrace chaos"
+        ]
+      },
+      {
+        q: "Your biggest desire deep down is…?",
+        options: [
+          "Peace at any cost",
+          "To be remembered",
+          "Control everything",
+          "Love, even if it hurts others"
+        ]
+      }
     ];
 
-    const villains = {
-      madara: { name: "Madara Uchiha", base: "Base", mid: "Rinnegan", final: "Six Paths", quote: "Wake up to reality...", img: "https://i.imgur.com/zL8xGfg.png" },
-      dio: { name: "Dio Brando", base: "Vampire", mid: "The World", final: "ZA WARUDO: Over Heaven", quote: "You thought it was someone else? It was me, Dio!", img: "https://i.imgur.com/zR7BeVZ.png" },
-      frieza: { name: "Frieza", base: "Base", mid: "Final Form", final: "Golden Frieza", quote: "You dare defy the emperor?!", img: "https://i.imgur.com/Kh3Ht0Q.png" },
-      aizen: { name: "Sosuke Aizen", base: "Shinigami", mid: "Hogyoku", final: "Butterfly", quote: "Admiration is the emotion farthest from understanding.", img: "https://i.imgur.com/yourAizenImage.png" },
-      light: { name: "Light Yagami", base: "Student", mid: "Kira", final: "God of the New World", quote: "I am Justice!", img: "https://i.imgur.com/yourLightImage.png" },
-      sukuna: { name: "Ryomen Sukuna", base: "One Finger", mid: "Four Fingers", final: "Full Power", quote: "Know your place, fool.", img: "https://i.imgur.com/yourSukunaImage.png" },
-      geto: { name: "Suguru Geto", base: "Student", mid: "Curse User", final: "Pseudo-Geto", quote: "Only those who possess an inordinate amount of power have the right to decide how it’s used.", img: "https://i.imgur.com/yourGetoImage.png" }
-    };
-    let current = 0, villainScores = {}, evilPoints = 0;
+    // Villain info
+    const villains = [
+      {
+        key: "madara",
+        name: "Madara Uchiha",
+        anime: "Naruto",
+        img: "https://i.imgur.com/zL8xGfg.png",
+        quote: "Wake up to reality. Nothing ever goes as planned in this world.",
+        vibe: "God complex, war-driven, mastermind"
+      },
+      {
+        key: "sukuna",
+        name: "Sukuna",
+        anime: "Jujutsu Kaisen",
+        img: "https://i.imgur.com/iRIe5g1.png",
+        quote: "Know your place, fool.",
+        vibe: "Chaotic, prideful, savage"
+      },
+      {
+        key: "aizen",
+        name: "Sosuke Aizen",
+        anime: "Bleach",
+        img: "https://i.imgur.com/2T8s4aA.png",
+        quote: "Admiration is the emotion farthest from understanding.",
+        vibe: "Calm genius, manipulative"
+      },
+      {
+        key: "light",
+        name: "Light Yagami",
+        anime: "Death Note",
+        img: "https://i.imgur.com/UvQwRNC.png",
+        quote: "I am Justice!",
+        vibe: "Justice-twisted, god complex"
+      },
+      {
+        key: "muzan",
+        name: "Muzan Kibutsuji",
+        anime: "Demon Slayer",
+        img: "https://i.imgur.com/aO6w1Cw.png",
+        quote: "I am a perfect being.",
+        vibe: "Heartless, controlling"
+      },
+      {
+        key: "geto",
+        name: "Suguru Geto",
+        anime: "Jujutsu Kaisen",
+        img: "https://i.imgur.com/w6P0w5x.png",
+        quote: "Only those with power have the right to decide how it’s used.",
+        vibe: "Anti-heroic, cursed idealist"
+      },
+      {
+        key: "dabi",
+        name: "Dabi (Toya Todoroki)",
+        anime: "My Hero Academia",
+        img: "https://i.imgur.com/l9sYXJb.png",
+        quote: "The present you’re so proud of is built on the sacrifices of the past.",
+        vibe: "Burned emotions, rebellion"
+      },
+      {
+        key: "griffith",
+        name: "Griffith",
+        anime: "Berserk",
+        img: "https://i.imgur.com/CXkL6kM.png",
+        quote: "If you’re alone… become the king.",
+        vibe: "Betrayal, ambition"
+      },
+      {
+        key: "frieza",
+        name: "Frieza",
+        anime: "Dragon Ball Z",
+        img: "https://i.imgur.com/Kh3Ht0Q.png",
+        quote: "You dare defy the emperor?!",
+        vibe: "Ruthless conqueror, prideful tyrant"
+      },
+      {
+        key: "dio",
+        name: "Dio Brando",
+        anime: "JoJo’s Bizarre Adventure",
+        img: "https://i.imgur.com/zR7BeVZ.png",
+        quote: "You thought it was someone else? It was me, Dio!",
+        vibe: "Charismatic, immortal, devilish mastermind"
+      }
+    ];
+
+    // Scoring matrix (question, answer): { villainKey: points }
+    const scoring = [
+      // Q1
+      {
+        A: { geto: 3, griffith: 2, esdeath: 1 },
+        B: { madara: 3, frieza: 2, dabi: 1 },
+        C: { light: 3, aizen: 2, griffith: 1, muzan: 1, dio: 1 },
+        D: { sukuna: 3, dio: 2, muzan: 1 }
+      },
+      // Q2
+      {
+        A: { geto: 3, esdeath: 2, griffith: 1 },
+        B: { dio: 3, frieza: 2, madara: 1, muzan: 1 },
+        C: { griffith: 3, dabi: 2, sukuna: 1 },
+        D: { light: 3, aizen: 2, muzan: 1 }
+      },
+      // Q3
+      {
+        A: { light: 3, aizen: 2, dio: 1, griffith: 1, geto: 1 },
+        B: { madara: 3, frieza: 2, dabi: 1, muzan: 1 },
+        C: { sukuna: 3, griffith: 2, geto: 1 },
+        D: { esdeath: 3, muzan: 2 }
+      },
+      // Q4
+      {
+        A: { madara: 3, light: 2, frieza: 1, griffith: 1, muzan: 1 },
+        B: { dio: 3, sukuna: 2, dabi: 1 },
+        C: { geto: 3, griffith: 2, esdeath: 1 },
+        D: { aizen: 3, griffith: 2, muzan: 1 }
+      },
+      // Q5
+      {
+        A: { geto: 3, griffith: 2, esdeath: 1 },
+        B: { griffith: 3, frieza: 2, dio: 1 },
+        C: { light: 3, aizen: 2, madara: 1, muzan: 1 },
+        D: { dabi: 3, sukuna: 2, muzan: 1 }
+      }
+    ];
+
+    // To map key to villain
+    const villainMap = villains.reduce((map, v) => { map[v.key] = v; return map; }, {});
+
+    let current = 0, villainScores = {};
 
     function startQuiz() {
       villainScores = {};
-      evilPoints = 0;
       current = 0;
-      startScreen.style.display = "none";
-      resultBox.style.display = "none";
-      quizBox.style.display = "flex";
+      document.getElementById("start-screen").style.display = "none";
+      document.getElementById("result").style.display = "none";
+      document.getElementById("quiz-box").style.display = "flex";
       loadQuestion();
       updateProgress();
     }
@@ -242,11 +374,11 @@
     }
 
     function selectAnswer(letter) {
-      const scoreSet = questions[current].scores[letter];
-      for (let villain in scoreSet) {
-        villainScores[villain] = (villainScores[villain] || 0) + scoreSet[villain];
+      // Add points
+      const mapping = scoring[current][letter];
+      for (const vKey in mapping) {
+        villainScores[vKey] = (villainScores[vKey] || 0) + mapping[vKey];
       }
-      evilPoints += questions[current].evil[letter];
       current++;
       if (current < questions.length) {
         loadQuestion();
@@ -257,22 +389,24 @@
 
     function updateProgress() {
       let percent = ((current) / questions.length) * 100;
-      progressBar.style.width = percent + "%";
+      document.getElementById("progress-bar").style.width = percent + "%";
     }
 
     function showResult() {
-      quizBox.style.display = "none";
-      resultBox.style.display = "flex";
-      let topVillain = Object.entries(villainScores).sort((a, b) => b[1] - a[1])[0][0];
-      let villain = villains[topVillain];
-      let form = evilPoints <= 6 ? villain.base : evilPoints <= 11 ? villain.mid : villain.final;
-      resultBox.innerHTML = `
-        <h2>You Are ${villain.name} (${form})</h2>
+      document.getElementById("quiz-box").style.display = "none";
+      document.getElementById("result").style.display = "flex";
+      // Find top villain by score
+      let top = Object.entries(villainScores).sort((a, b) => b[1] - a[1])[0];
+      let villain = villainMap[top[0]];
+      document.getElementById("result").innerHTML = `
+        <h2>You Are ${villain.name}!</h2>
         <img src="${villain.img}" alt="${villain.name}">
-        <p style="font-size:1.08rem;"><em>“${villain.quote}”</em></p>
-        <button class="restart-btn" onclick="startQuiz()">Play Again</button>
+        <p style="font-size:1rem;"><b>Anime:</b> ${villain.anime}</p>
+        <p><em>“${villain.quote}”</em></p>
+        <p style="color:#ffac41;margin:14px 0 4px;"><b>Vibe:</b> ${villain.vibe}</p>
+        <button class="restart-btn" onclick="playSound();startQuiz()">Play Again</button>
       `;
-      progressBar.style.width = "100%";
+      document.getElementById("progress-bar").style.width = "100%";
     }
   </script>
 </body>
