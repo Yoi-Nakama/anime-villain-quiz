@@ -3,97 +3,236 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anime Villain Quiz</title>
+  <title>Which Anime Villain Are You?</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
+      margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to right, #0f0f0f, #1a1a1a);
-      color: #f0f0f0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-    }
-
-    header {
+      background: radial-gradient(circle, #0b0b0b 20%, #1a1a1a 80%);
+      color: #fff;
       text-align: center;
-      margin-bottom: 40px;
+      padding: 20px;
+      overflow-x: hidden;
     }
-
     header h1 {
       font-family: 'Orbitron', sans-serif;
       color: crimson;
-      font-size: 3rem;
-      letter-spacing: 2px;
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px crimson;
     }
-
     .quiz-container {
-      background-color: #222;
-      padding: 30px;
-      border-radius: 10px;
-      width: 100%;
       max-width: 600px;
+      margin: auto;
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
       box-shadow: 0 0 20px crimson;
+      animation: fadeIn 1s ease forwards;
     }
-
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
     .question {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       margin-bottom: 20px;
     }
-
-    .options {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .option {
-      background: #333;
-      border: 2px solid crimson;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .option:hover {
-      background: crimson;
+    .options button {
+      background: #2a2a2a;
       color: #fff;
+      border: 2px solid crimson;
+      padding: 12px;
+      margin: 10px 0;
+      width: 100%;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
     }
-
-    footer {
-      margin-top: 50px;
-      font-size: 0.9rem;
-      color: #888;
+    .options button:hover {
+      background: crimson;
+    }
+    #result {
+      margin-top: 40px;
+      display: none;
+    }
+    #result h2 {
+      color: crimson;
+      font-size: 2rem;
+    }
+    #result img {
+      max-width: 250px;
+      border-radius: 10px;
+      margin: 20px auto;
+      display: block;
+      box-shadow: 0 0 15px crimson;
+    }
+    #result p {
+      font-size: 1rem;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Anime Villain Quiz</h1>
-    <p>Can you guess which anime villain said what?</p>
+    <h1>Which Anime Villain Are You?</h1>
+    <p>Answer these questions to reveal your villain form 😈</p>
   </header>
 
-  <div class="quiz-container">
-    <div class="question">"The world shall know pain!"</div>
+  <div class="quiz-container" id="quiz">
+    <div class="question" id="question"></div>
     <div class="options">
-      <div class="option">Madara Uchiha</div>
-      <div class="option">Pain (Nagato)</div>
-      <div class="option">Aizen</div>
-      <div class="option">Dio Brando</div>
+      <button onclick="selectAnswer('A')" id="btnA"></button>
+      <button onclick="selectAnswer('B')" id="btnB"></button>
+      <button onclick="selectAnswer('C')" id="btnC"></button>
+      <button onclick="selectAnswer('D')" id="btnD"></button>
     </div>
   </div>
 
-  <footer>
-    © 2025 Anime Villain Quiz • Built by Yoi-Nakama and Sophia 🖤
-  </footer>
+  <div id="result"></div>
+
+  <script>
+    const questions = [
+      {
+        q: "You just gained power overnight. What's the first thing you'd do?",
+        options: [
+          "Help the weak",
+          "Crush my enemies",
+          "Change the system",
+          "Test it on someone… for fun"
+        ],
+        scores: {
+          A: { madara: 2 },
+          B: { frieza: 3, dio: 2 },
+          C: { light: 2, aizen: 1 },
+          D: { sukuna: 3, geto: 1 }
+        },
+        evil: { A: 0, B: 2, C: 1, D: 3 }
+      },
+      {
+        q: "Your friend betrays you. How do you respond?",
+        options: [
+          "Forgive but never forget",
+          "Eliminate them without emotion",
+          "Make them regret it eternally",
+          "Smile and plot quietly"
+        ],
+        scores: {
+          A: { meruem: 2 },
+          B: { madara: 1, frieza: 3 },
+          C: { griffith: 2, geto: 2 },
+          D: { light: 2, aizen: 2 }
+        },
+        evil: { A: 0, B: 2, C: 3, D: 1 }
+      },
+      {
+        q: "Pick your weapon in a life-or-death battle:",
+        options: [
+          "Words and manipulation",
+          "Raw strength and fear",
+          "Strategy and illusion",
+          "Love… turned into pain"
+        ],
+        scores: {
+          A: { light: 2, aizen: 3 },
+          B: { frieza: 2, dabi: 1 },
+          C: { madara: 2, aizen: 1 },
+          D: { dabi: 3, griffith: 2 }
+        },
+        evil: { A: 1, B: 2, C: 1, D: 3 }
+      },
+      {
+        q: "If the world hated you, what would you become?",
+        options: [
+          "Its ruler",
+          "Its destroyer",
+          "Its savior… secretly",
+          "Laugh and embrace chaos"
+        ],
+        scores: {
+          A: { madara: 2, griffith: 2 },
+          B: { frieza: 3, sukuna: 2 },
+          C: { geto: 2, meruem: 1 },
+          D: { dio: 3, muzain: 1 }
+        },
+        evil: { A: 1, B: 3, C: 0, D: 3 }
+      },
+      {
+        q: "Your biggest desire deep down is…",
+        options: [
+          "Peace at any cost",
+          "To be remembered",
+          "Control everything",
+          "Love, even if it hurts others"
+        ],
+        scores: {
+          A: { madara: 3, meruem: 2 },
+          B: { dio: 2, griffith: 2 },
+          C: { light: 3, aizen: 2 },
+          D: { dabi: 3, muzain: 2 }
+        },
+        evil: { A: 0, B: 1, C: 2, D: 3 }
+      }
+    ];
+
+    const villains = {
+      madara: { name: "Madara Uchiha", base: "Base", mid: "Rinnegan", final: "Six Paths", quote: "Wake up to reality...", img: "https://i.imgur.com/zL8xGfg.png" },
+      frieza: { name: "Frieza", base: "Base", mid: "Final Form", final: "Golden Frieza", quote: "You dare defy the emperor?!", img: "https://i.imgur.com/Kh3Ht0Q.png" },
+      light: { name: "Light Yagami", base: "Student", mid: "Kira", final: "God of the New World", quote: "I am justice!", img: "https://i.imgur.com/Ytx7KnV.png" },
+      aizen: { name: "Sosuke Aizen", base: "Captain", mid: "True Form", final: "Hogyoku Ascended", quote: "All according to plan.", img: "https://i.imgur.com/NhclBEq.png" },
+      sukuna: { name: "Ryomen Sukuna", base: "1 Finger", mid: "10 Fingers", final: "15+ Fingers", quote: "Know your place, fool.", img: "https://i.imgur.com/0B0Gvja.png" },
+      geto: { name: "Suguru Geto", base: "Sorcerer", mid: "Cursed Ideals", final: "Massacrer", quote: "Monkeys don’t deserve this world.", img: "https://i.imgur.com/LaBfQEj.png" },
+      griffith: { name: "Griffith", base: "Falcon", mid: "Femto", final: "Demon Lord", quote: "For my dream... all must be sacrificed.", img: "https://i.imgur.com/DcV67EC.png" },
+      dabi: { name: "Dabi", base: "Toya", mid: "Flame Reaper", final: "Raging Inferno", quote: "Let it all burn.", img: "https://i.imgur.com/lDsBXri.png" },
+      dio: { name: "Dio Brando", base: "Vampire", mid: "The World", final: "ZA WARUDO: Over Heaven", quote: "You thought it was someone else? It was me, Dio!", img: "https://i.imgur.com/zR7BeVZ.png" },
+      muzain: { name: "Muzan Kibutsuji", base: "Human", mid: "Demon King", final: "True Form", quote: "You have no chance against me.", img: "https://i.imgur.com/0ykkwMb.png" },
+      meruem: { name: "Meruem", base: "Chimera Ant", mid: "Royal Guard Leader", final: "Enlightened King", quote: "I now understand what it means to protect.", img: "https://i.imgur.com/z8MvFSn.png" }
+    };
+
+    let current = 0;
+    let villainScores = {};
+    let evilPoints = 0;
+
+    function loadQuestion() {
+      const q = questions[current];
+      document.getElementById("question").textContent = q.q;
+      document.getElementById("btnA").textContent = q.options[0];
+      document.getElementById("btnB").textContent = q.options[1];
+      document.getElementById("btnC").textContent = q.options[2];
+      document.getElementById("btnD").textContent = q.options[3];
+    }
+
+    function selectAnswer(letter) {
+      const scoreSet = questions[current].scores[letter];
+      for (let villain in scoreSet) {
+        villainScores[villain] = (villainScores[villain] || 0) + scoreSet[villain];
+      }
+      evilPoints += questions[current].evil[letter];
+      current++;
+      if (current < questions.length) {
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      document.getElementById("quiz").style.display = "none";
+      let topVillain = Object.entries(villainScores).sort((a, b) => b[1] - a[1])[0][0];
+      let villain = villains[topVillain];
+      let form = evilPoints <= 6 ? villain.base : evilPoints <= 11 ? villain.mid : villain.final;
+
+      document.getElementById("result").style.display = "block";
+      document.getElementById("result").innerHTML = `
+        <h2>You Are ${villain.name} (${form})</h2>
+        <img src="${villain.img}" alt="${villain.name}"/>
+        <p><em>\"${villain.quote}\"</em></p>
+      `;
+    }
+
+    window.onload = loadQuestion;
+  </script>
 </body>
-  </html>
-  
+</html>
