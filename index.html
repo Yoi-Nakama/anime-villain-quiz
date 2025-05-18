@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Which Anime Villain Are You?</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto&display=swap" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <style>
     body, html {
@@ -32,30 +32,34 @@
       height: 100vh;
       text-align: center;
       padding: 20px;
+      animation: fadeIn 1.2s ease-in-out;
     }
 
     .game-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       color: crimson;
-      text-shadow: 0 0 10px crimson;
+      text-shadow: 0 0 15px crimson, 0 0 30px red;
       margin-bottom: 20px;
+      animation: pulse 2s infinite;
     }
 
     .start-btn {
       font-size: 1.2rem;
-      background: transparent;
+      background: linear-gradient(135deg, transparent, crimson);
       border: 2px solid crimson;
       color: crimson;
-      padding: 10px 25px;
-      border-radius: 8px;
+      padding: 12px 30px;
+      border-radius: 10px;
       cursor: pointer;
       transition: 0.3s;
+      box-shadow: 0 0 10px crimson;
     }
+
     .start-btn:hover {
       background: crimson;
       color: #fff;
-      box-shadow: 0 0 20px crimson;
+      box-shadow: 0 0 25px crimson;
     }
 
     .quiz-box {
@@ -65,15 +69,17 @@
       text-align: center;
       max-width: 600px;
       margin: auto;
-      background: rgba(30, 30, 30, 0.9);
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px crimson;
+      background: rgba(30, 30, 30, 0.95);
+      padding: 35px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px crimson;
+      animation: slideIn 0.8s ease-in-out;
     }
 
     .question {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       margin-bottom: 20px;
+      color: #ffdddd;
     }
 
     .options button {
@@ -83,30 +89,59 @@
       padding: 12px;
       margin: 10px 0;
       width: 100%;
-      border-radius: 5px;
+      border-radius: 6px;
       font-size: 1rem;
       cursor: pointer;
       transition: 0.3s;
+      box-shadow: 0 0 10px #111;
     }
+
     .options button:hover {
       background: crimson;
       color: white;
+      box-shadow: 0 0 20px crimson;
     }
 
     .result-box {
       display: none;
       padding: 20px;
       text-align: center;
+      animation: fadeIn 1.2s ease-in-out;
     }
+
     .result-box img {
       width: 250px;
       margin: 20px 0;
       border-radius: 10px;
-      box-shadow: 0 0 15px crimson;
+      box-shadow: 0 0 20px crimson;
     }
+
     .result-box h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       color: crimson;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px crimson;
+    }
+
+    .result-box p {
+      font-size: 1.1rem;
+      color: #ddd;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes slideIn {
+      from {transform: translateY(30px); opacity: 0;}
+      to {transform: translateY(0); opacity: 1;}
+    }
+
+    @keyframes pulse {
+      0% {text-shadow: 0 0 15px crimson;}
+      50% {text-shadow: 0 0 30px red;}
+      100% {text-shadow: 0 0 15px crimson;}
     }
   </style>
 </head>
@@ -149,14 +184,35 @@
         },
         evil: { A: 0, B: 2, C: 1, D: 3 }
       },
-      // [Add other questions here like previous structure]
+      // Add more questions here following the same format
     ];
 
     const villains = {
-      madara: { name: "Madara Uchiha", base: "Base", mid: "Rinnegan", final: "Six Paths", quote: "Wake up to reality...", img: "https://i.imgur.com/zL8xGfg.png" },
-      dio: { name: "Dio Brando", base: "Vampire", mid: "The World", final: "ZA WARUDO: Over Heaven", quote: "You thought it was someone else? It was me, Dio!", img: "https://i.imgur.com/zR7BeVZ.png" },
-      frieza: { name: "Frieza", base: "Base", mid: "Final Form", final: "Golden Frieza", quote: "You dare defy the emperor?!", img: "https://i.imgur.com/Kh3Ht0Q.png" },
-      // Add other villain forms...
+      madara: {
+        name: "Madara Uchiha",
+        base: "Base",
+        mid: "Rinnegan",
+        final: "Six Paths",
+        quote: "Wake up to reality...",
+        img: "https://i.imgur.com/zL8xGfg.png"
+      },
+      dio: {
+        name: "Dio Brando",
+        base: "Vampire",
+        mid: "The World",
+        final: "ZA WARUDO: Over Heaven",
+        quote: "You thought it was someone else? It was me, Dio!",
+        img: "https://i.imgur.com/zR7BeVZ.png"
+      },
+      frieza: {
+        name: "Frieza",
+        base: "Base",
+        mid: "Final Form",
+        final: "Golden Frieza",
+        quote: "You dare defy the emperor?!",
+        img: "https://i.imgur.com/Kh3Ht0Q.png"
+      },
+      // Add more villains here
     };
 
     let current = 0;
@@ -180,11 +236,14 @@
 
     function selectAnswer(letter) {
       const scoreSet = questions[current].scores[letter];
-      for (let villain in scoreSet) {
-        villainScores[villain] = (villainScores[villain] || 0) + scoreSet[villain];
+      for (let v in scoreSet) {
+        if (!villainScores[v]) villainScores[v] = 0;
+        villainScores[v] += scoreSet[v];
       }
+
       evilPoints += questions[current].evil[letter];
       current++;
+
       if (current < questions.length) {
         loadQuestion();
       } else {
@@ -195,15 +254,20 @@
     function showResult() {
       quizBox.style.display = "none";
       resultBox.style.display = "block";
+
       let topVillain = Object.entries(villainScores).sort((a, b) => b[1] - a[1])[0][0];
-      let villain = villains[topVillain];
-      let form = evilPoints <= 6 ? villain.base : evilPoints <= 11 ? villain.mid : villain.final;
+      let result = villains[topVillain];
+
       resultBox.innerHTML = `
-        <h2>You Are ${villain.name} (${form})</h2>
-        <img src="${villain.img}" alt="${villain.name}">
-        <p><em>\"${villain.quote}\"</em></p>
+        <h2>You Are ${result.name}!</h2>
+        <img src="${result.img}" alt="${result.name}"/>
+        <p><strong>Forms:</strong> ${result.base} → ${result.mid} → ${result.final}</p>
+        <p><em>${result.quote}</em></p>
+        <p>Your evil score: ${evilPoints} 🔥</p>
+        <button class="start-btn" onclick="location.reload()">Play Again</button>
       `;
     }
   </script>
 </body>
-</html>
+        </html>
+  
