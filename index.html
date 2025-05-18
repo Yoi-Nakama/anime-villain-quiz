@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Which Anime Villain Are You?</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Press+Start+2P&family=UnifrakturCook:wght@700&family=Faster+One&family=Oswald:wght@700&family=Fira+Mono:wght@700&family=Permanent+Marker&family=Shadows+Into+Light&family=Black+Ops+One&family=Luckiest+Guy&family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Press+Start+2P&family=UnifrakturCook:wght@700&family=Faster+One&family=Oswald:wght@700&family=Fira+Mono:wght@700&family=Luckiest+Guy&family=Shadows+Into+Light&family=VT323&family=Black+Ops+One&family=Permanent+Marker&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <style>
     html, body {
@@ -50,36 +50,36 @@
       background: #2c003e;
       border-radius: 10px;
       margin: 0 auto 25px;
-      box-shadow: 0 0 12px #ff1e56;
+      box-shadow: 0 0 12px #7e2de7;
       overflow: hidden;
     }
     .progress-bar {
       height: 100%;
-      background: linear-gradient(90deg,#ff1e56,#ffac41);
+      background: linear-gradient(90deg,#343256,#47d16a);
       width: 0%;
       border-radius: 10px;
       transition: width 0.5s cubic-bezier(.46,.03,.52,.96);
-      box-shadow: 0 0 10px #ffac41;
+      box-shadow: 0 0 10px #47d16a;
     }
     .start-btn, .option-btn, .restart-btn {
       font-family: 'Orbitron', 'Press Start 2P', cursive;
       font-size: 1.2rem;
       background: rgba(31, 0, 47, 0.8);
-      border: 2px solid #ff1e56;
+      border: 2px solid #7e2de7;
       color: #fff;
       padding: 18px 30px;
       margin: 12px 0;
       border-radius: 10px;
       cursor: pointer;
       transition: all 0.18s, box-shadow 0.3s;
-      box-shadow: 0 0 24px #ff1e56;
+      box-shadow: 0 0 24px #7e2de7;
       text-shadow: 0 0 4px #fff;
       letter-spacing: 1.5px;
       outline: none;
       position: relative;
     }
     .option-btn:hover, .start-btn:hover, .restart-btn:hover {
-      background: #ff1e56;
+      background: #7e2de7;
       color: #fff;
       box-shadow: 0 0 32px #fff;
       border-color: #fff;
@@ -92,7 +92,7 @@
       background: rgba(30, 0, 64, 0.96);
       padding: 36px 32px 30px 32px;
       border-radius: 20px;
-      box-shadow: 0 0 28px #ff1e56, 0 0 4px #fff;
+      box-shadow: 0 0 28px #7e2de7, 0 0 4px #fff;
       min-width: 340px;
       max-width: 94vw;
       margin: auto;
@@ -100,27 +100,31 @@
       margin-bottom: 18px;
     }
     .result-box {
-      border: 4px solid #ff1e56;
-      box-shadow: 0 0 40px 10px #ff1e56, 0 0 10px #fff;
+      border: 4px solid #7e2de7;
+      box-shadow: 0 0 40px 10px #7e2de7, 0 0 10px #fff;
       position: relative;
       overflow: hidden;
       transition: border-color .3s;
     }
     .result-box.thriller {
-      border: 4px solid #ffac41;
-      box-shadow: 0 0 60px 20px #ffac41, 0 0 10px #fff, 0 0 60px #ff1e56 inset;
+      border: 4px solid #47d16a;
+      box-shadow: 0 0 60px 20px #47d16a, 0 0 10px #fff, 0 0 60px #7e2de7 inset;
       animation: thrillerPulse 1.2s infinite alternate;
     }
     @keyframes thrillerPulse {
-      0% { box-shadow: 0 0 40px 10px #ff1e56, 0 0 10px #fff;}
-      100% { box-shadow: 0 0 85px 30px #ffac41, 0 0 12px #fff, 0 0 90px #ff1e56 inset;}
+      0% { box-shadow: 0 0 40px 10px #7e2de7, 0 0 10px #fff;}
+      100% { box-shadow: 0 0 85px 30px #47d16a, 0 0 12px #fff, 0 0 90px #7e2de7 inset;}
+    }
+    .result-box.griffith {
+      background: #e0dde5 !important;
+      box-shadow: 0 0 18px #b2aec2, 0 0 5px #fff;
     }
     .question {
       font-size: 1.2rem;
       margin-bottom: 24px;
       font-family: 'Press Start 2P', 'Orbitron', cursive;
       letter-spacing: 1.2px;
-      text-shadow: 0 0 3px #ffac41;
+      text-shadow: 0 0 3px #47d16a;
     }
     .options {
       width: 100%;
@@ -133,10 +137,10 @@
       width: 270px;
       margin: 25px 0 15px 0;
       border-radius: 16px;
-      box-shadow: 0 0 25px #ff1e56;
+      box-shadow: 0 0 25px #7e2de7;
       background: #fff;
       object-fit: contain;
-      border: 3px solid #ff1e56;
+      border: 3px solid #7e2de7;
       animation: villainPop 0.8s;
     }
     @keyframes villainPop {
@@ -146,14 +150,14 @@
     }
     .result-box h2 {
       font-size: 1.4rem;
-      color: #ff1e56;
+      color: #7e2de7;
       font-family: 'Orbitron', 'Press Start 2P', cursive;
       text-shadow: 0 0 7px #fff;
       margin: 0 0 18px 0;
     }
     .result-form-label {
       font-size: 1.1rem;
-      color: #ffac41;
+      color: #47d16a;
       font-family: 'Orbitron', 'Press Start 2P', cursive;
       margin-bottom: 7px;
       margin-top: 0;
@@ -162,16 +166,14 @@
     .anime-title {
       display: inline-block;
       padding: 4px 16px;
-      background: linear-gradient(90deg,#ff1e56,#ffac41,#fff,#2c003e);
-      color: #fff;
+      background: transparent;
+      /* color and font handled inline */
       font-size: 1.22rem;
-      font-family: 'Faster One', 'Orbitron', cursive;
       letter-spacing: 2.5px;
       border-radius: 8px;
       margin-bottom: 8px;
       margin-top: 0;
-      box-shadow: 0 0 8px #fff, 0 0 12px #ffac41;
-      text-shadow: 0 0 4px #1a0037;
+      /* box-shadow and text-shadow handled inline */
       transform: skew(-6deg) rotate(-1deg);
     }
     .villain-quote {
@@ -179,50 +181,12 @@
       margin: 14px 0 0 0;
       font-size: 1.08rem;
       letter-spacing: 1.1px;
-      text-shadow: 0 0 6px #ffac41;
-      border-left: 3px solid #ff1e56;
+      border-left: 3px solid #7e2de7;
       padding-left: 12px;
       white-space: pre-line;
       opacity: 0.95;
       margin-bottom: 12px;
     }
-    .threat-meter-wrap {
-      width: 220px;
-      margin: 0 0 14px 0;
-      background: #20002c;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 10px #ff1e56, 0 0 2px #fff;
-    }
-    .threat-meter {
-      height: 18px;
-      background: linear-gradient(90deg,#c90000,#dada00,#1aff00);
-      width: 0%;
-      transition: width 1.1s cubic-bezier(.4,1.2,.6,1);
-      border-radius: 10px;
-      box-shadow: 0 0 7px #ffac41;
-    }
-    .threat-label {
-      font-family: 'Orbitron', 'VT323', monospace;
-      font-size: 1.05rem;
-      color: #ffac41;
-      letter-spacing: 1.7px;
-      text-shadow: 0 0 2px #fff;
-      margin-bottom: 2px;
-    }
-    .restart-btn {
-      margin-top: 26px;
-      border-color: #ffac41;
-      box-shadow: 0 0 18px #ffac41;
-      background: rgba(255, 172, 65, 0.15);
-      color: #ffac41;
-    }
-    .restart-btn:hover {
-      background: #ffac41;
-      color: #1a0037;
-      border-color: #fff;
-    }
-    /* Per-villain fonts (add more as needed) */
     .font-madara { font-family: 'Black Ops One', 'Orbitron', 'Press Start 2P', sans-serif; font-weight: 900; text-transform:uppercase; color: #f54257; letter-spacing:2.5px;}
     .font-sukuna { font-family: 'Permanent Marker', 'Oswald', cursive; color: #d9006c; text-shadow: 0 0 8px #fff; font-style:italic;}
     .font-aizen { font-family: 'Oswald', 'Orbitron', serif; color: #4fd4ff; letter-spacing:1.5px; }
@@ -230,11 +194,70 @@
     .font-muzan { font-family: 'UnifrakturCook', cursive; color: #ff0e43; font-size:1.13em;}
     .font-geto { font-family: 'VT323', monospace; color: #76f2ff; font-size:1.13em;}
     .font-dabi { font-family: 'Luckiest Guy', cursive; color: #47a3ff; text-shadow: 0 0 9px #fff;}
-    .font-griffith { font-family: 'Shadows Into Light', cursive; color: #d4d1e1; text-shadow: 0 0 8px #fff;}
+    .font-griffith { color: #4a4a4a; text-shadow: 0 0 2px #fff;}
     .font-frieza { font-family: 'Faster One', cursive; color: #e5c800; letter-spacing:2.5px;}
     .font-dio { font-family: 'UnifrakturCook', cursive; color: #b400ff; font-size:1.11em;}
+    /* Per-villain dynamic animation */
+    .result-box.dabi, .font-dabi { animation: flameFlicker 0.7s infinite alternate; }
+    @keyframes flameFlicker {
+      0% { filter: brightness(1);}
+      50% { filter: brightness(1.15) hue-rotate(-12deg);}
+      100% { filter: brightness(1);}
+    }
+    .result-box.aizen, .font-aizen { animation: shatterPulse 1.5s infinite alternate;}
+    @keyframes shatterPulse {
+      0% { box-shadow: 0 0 44px #4fd4ff; }
+      100% { box-shadow: 0 0 22px #1a0037; }
+    }
+    /* Threat Meter: Green (safe) to Red (danger) */
+    .threat-meter-wrap {
+      width: 220px;
+      margin: 0 0 14px 0;
+      background: #20002c;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px #7e2de7, 0 0 2px #fff;
+    }
+    .threat-meter {
+      height: 18px;
+      background: linear-gradient(90deg,#1aff00,#dada00,#c90000);
+      width: 0%;
+      transition: width 1.1s cubic-bezier(.4,1.2,.6,1);
+      border-radius: 10px;
+      box-shadow: 0 0 7px #47d16a;
+    }
+    .threat-label {
+      font-family: 'Orbitron', 'VT323', monospace;
+      font-size: 1.05rem;
+      color: #47d16a;
+      letter-spacing: 1.7px;
+      text-shadow: 0 0 2px #fff;
+      margin-bottom: 2px;
+    }
+    .restart-btn {
+      margin-top: 26px;
+      border-color: #47d16a;
+      box-shadow: 0 0 18px #47d16a;
+      background: rgba(71, 209, 106, 0.15);
+      color: #47d16a;
+    }
+    .restart-btn:hover {
+      background: #47d16a;
+      color: #1a0037;
+      border-color: #fff;
+    }
     @media (max-width: 400px) {
       .quiz-box, .result-box { padding: 18px 4vw; min-width: unset;}
+    }
+    /* Classic/Retro manga lines overlay for result card */
+    .classic-overlay {
+      pointer-events: none;
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      opacity: 0.16;
+      background: url('https://i.imgur.com/HnGdhEw.png');
+      background-size: cover;
+      z-index: 1;
     }
   </style>
 </head>
@@ -260,10 +283,65 @@
   </div>
   <div class="result-box" id="result" style="display:none;"></div>
   <script>
+    // ParticlesJS background, will swap config if needed for villain
     particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
     function playSound() { document.getElementById('sfx').currentTime=0; document.getElementById('sfx').play(); }
 
-    // Map each villain to a font class for the result
+    // 1. Anime logo styles (font/colors/shadow/etc)
+    const animeLogos = {
+      "Jujutsu Kaisen": {
+        fontFamily: "'UnifrakturCook', cursive",
+        color: "#00ffd0",
+        textShadow: "0 0 8px #0ff, 0 0 3px #fff"
+      },
+      "Naruto": {
+        fontFamily: "'Orbitron', sans-serif",
+        color: "#ff9900",
+        textShadow: "0 0 9px #ff0, 0 0 3px #fff"
+      },
+      "Bleach": {
+        fontFamily: "'Oswald', sans-serif",
+        color: "#2340ff",
+        textShadow: "0 0 8px #0099ff, 0 0 3px #fff"
+      },
+      "Death Note": {
+        fontFamily: "'Fira Mono', monospace",
+        color: "#fff800",
+        textShadow: "0 0 9px #fff"
+      },
+      "Demon Slayer": {
+        fontFamily: "'UnifrakturCook', cursive",
+        color: "#ff0e43",
+        textShadow: "0 0 7px #fff"
+      },
+      "My Hero Academia": {
+        fontFamily: "'Luckiest Guy', cursive",
+        color: "#47a3ff",
+        textShadow: "0 0 9px #fff"
+      },
+      "Berserk": {
+        fontFamily: "'Shadows Into Light', cursive",
+        color: "#d4d1e1",
+        textShadow: "0 0 6px #6f6f7b"
+      },
+      "Dragon Ball Z": {
+        fontFamily: "'Faster One', cursive",
+        color: "#e5c800",
+        textShadow: "0 0 9px #fff700"
+      },
+      "JoJo’s Bizarre Adventure": {
+        fontFamily: "'UnifrakturCook', cursive",
+        color: "#b400ff",
+        textShadow: "0 0 8px #fff"
+      },
+      "JJK": {
+        fontFamily: "'VT323', monospace",
+        color: "#76f2ff",
+        textShadow: "0 0 8px #76f2ff"
+      }
+    };
+
+    // 2. Per-villain font classes (unchanged, but you can add more for new villains)
     const villainFonts = {
       madara: "font-madara",
       sukuna: "font-sukuna",
@@ -277,7 +355,7 @@
       dio: "font-dio"
     };
 
-    // Threat level or "type" for flavor
+    // 3. Threat Level (use unique per-villain label + percent and use red=highest)
     const villainThreat = {
       madara: "Threat Level: God",
       sukuna: "Threat Level: Cataclysmic",
@@ -290,22 +368,21 @@
       frieza: "Threat Level: Galactic",
       dio: "Threat Level: Vampire King"
     };
-
-    // Threat meter percent
+    // Highest is red (100), green is weakest (60)
     const villainThreatPercent = {
-      madara: 99,
-      sukuna: 95,
-      aizen: 92,
+      madara: 100,
+      sukuna: 98,
+      aizen: 95,
       light: 80,
       muzan: 97,
       geto: 89,
       dabi: 80,
-      griffith: 89,
-      frieza: 90,
-      dio: 90
+      griffith: 86,
+      frieza: 93,
+      dio: 92
     };
 
-    // Questions and answer options (unchanged)
+    // 4. Questions and answer options (unchanged)
     const questions = [
       {
         q: "You just gained power overnight. What’s the first thing you’d do?",
@@ -354,7 +431,7 @@
       }
     ];
 
-    // Villain result forms (unchanged)
+    // 5. Villain result forms (unchanged, but you can add bgColor, music, more forms as needed)
     const villainForms = {
       madara: [
         {
@@ -473,7 +550,7 @@
           name: "Griffith, Betrayer",
           image: "https://i.imgur.com/CXkL6kM.png",
           quote: "If you’re alone… become the king.",
-          bgColor: "#3e343a",
+          bgColor: "#e0dde5",
           music: ""
         },
         {
@@ -518,7 +595,7 @@
       ]
     };
 
-    // Villain info (for anime, vibe)
+    // 6. Villain info (for anime, vibe)
     const villains = [
       {
         key: "madara",
@@ -553,7 +630,7 @@
       {
         key: "geto",
         name: "Suguru Geto",
-        anime: "Jujutsu Kaisen",
+        anime: "JJK",
         vibe: "Anti-heroic, cursed idealist"
       },
       {
@@ -582,18 +659,18 @@
       }
     ];
 
-    // Scoring matrix (question, answer): { villainKey: points }
+    // 7. Scoring matrix (from your provided logic, not random)
     const scoring = [
       // Q1
       {
-        A: { geto: 3, griffith: 2, esdeath: 1 },
+        A: { geto: 3 },
         B: { madara: 3, frieza: 2, dabi: 1 },
         C: { light: 3, aizen: 2, griffith: 1, muzan: 1, dio: 1 },
         D: { sukuna: 3, dio: 2, muzan: 1 }
       },
       // Q2
       {
-        A: { geto: 3, esdeath: 2, griffith: 1 },
+        A: { geto: 3 },
         B: { dio: 3, frieza: 2, madara: 1, muzan: 1 },
         C: { griffith: 3, dabi: 2, sukuna: 1 },
         D: { light: 3, aizen: 2, muzan: 1 }
@@ -603,18 +680,18 @@
         A: { light: 3, aizen: 2, dio: 1, griffith: 1, geto: 1 },
         B: { madara: 3, frieza: 2, dabi: 1, muzan: 1 },
         C: { sukuna: 3, griffith: 2, geto: 1 },
-        D: { esdeath: 3, muzan: 2 }
+        D: { muzan: 2 }
       },
       // Q4
       {
         A: { madara: 3, light: 2, frieza: 1, griffith: 1, muzan: 1 },
         B: { dio: 3, sukuna: 2, dabi: 1 },
-        C: { geto: 3, griffith: 2, esdeath: 1 },
+        C: { geto: 3 },
         D: { aizen: 3, griffith: 2, muzan: 1 }
       },
       // Q5
       {
-        A: { geto: 3, griffith: 2, esdeath: 1 },
+        A: { geto: 3 },
         B: { griffith: 3, frieza: 2, dio: 1 },
         C: { light: 3, aizen: 2, madara: 1, muzan: 1 },
         D: { dabi: 3, sukuna: 2, muzan: 1 }
@@ -667,38 +744,40 @@
 
     function showResult() {
       document.getElementById("quiz-box").style.display = "none";
-      document.getElementById("result").className = "result-box thriller";
-      document.getElementById("result").style.display = "flex";
       // Find top villain by score
       let top = Object.entries(villainScores).sort((a, b) => b[1] - a[1])[0];
       let villainKey = top[0];
       let villain = villainMap[villainKey];
       let forms = villainForms[villainKey];
       let form = forms[Math.floor(Math.random() * forms.length)];
+      let animeLogoStyle = animeLogos[villain.anime] || {};
       stopVillainMusic();
+
+      // Play villain music if available
       if (form.music) {
         const music = document.getElementById("villain-music");
         music.src = form.music;
         music.volume = 0.66;
         music.play();
       }
-      document.getElementById("result").style.background = form.bgColor || "#1a0037";
-      // Threat Meter Animation
-      setTimeout(() => {
-        let meter = document.getElementById("threat-meter");
-        if (meter) meter.style.width = "0%";
-      }, 1);
+
+      // Themed background for result card
+      let resultBox = document.getElementById("result");
+      resultBox.className = `result-box thriller ${villainKey === 'griffith' ? 'griffith' : ''} ${villainKey}`; // for per-villain animation
+      resultBox.style.background = form.bgColor || "#1a0037";
+      resultBox.style.display = "flex";
 
       // Show result card
-      document.getElementById("result").innerHTML = `
-        <span class="anime-title">${villain.anime}</span>
+      resultBox.innerHTML = `
+        <div class="classic-overlay"></div>
+        <span class="anime-title" style="font-family:${animeLogoStyle.fontFamily};color:${animeLogoStyle.color};text-shadow:${animeLogoStyle.textShadow}">${villain.anime}</span>
         <span class="result-form-label ${villainFonts[villainKey]}">${form.name}</span>
         <h2 class="${villainFonts[villainKey]}">You Are ${villain.name}!</h2>
         <img src="${form.image}" alt="${villain.name}">
         <div class="threat-label">${villainThreat[villainKey]}</div>
         <div class="threat-meter-wrap"><div class="threat-meter" id="threat-meter"></div></div>
         <div class="villain-quote ${villainFonts[villainKey]}" id="typed-quote"></div>
-        <p style="color:#ffac41;margin:4px 0 4px;"><b>Vibe:</b> ${villain.vibe}</p>
+        <p style="color:${animeLogoStyle.color || '#47d16a'};margin:4px 0 4px;"><b>Vibe:</b> ${villain.vibe}</p>
         <button class="restart-btn" onclick="playSound();startQuiz()">Play Again</button>
       `;
 
@@ -731,12 +810,18 @@
         if (i < quote.length) {
           el.textContent += quote[i];
           i++;
-          // random "pause" for dramatic effect as a villain would
+          // dramatic pause for punctuation
           let extra = (quote[i-1] === '.' || quote[i-1] === ',' || quote[i-1] === '!' || quote[i-1] === '…') ? 150 : 0;
           setTimeout(typeChar, delay + Math.random()*20 + extra);
         }
       }
       typeChar();
+    }
+
+    // Optionally, change particles color on result (per-villain)
+    // Example: blue particles for Dabi, red for Sukuna, etc.
+    function setParticlesForVillain(villainKey) {
+      // TODO: Swap particles config or color based on villainKey if you want!
     }
   </script>
 </body>
