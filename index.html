@@ -4,144 +4,150 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Which Anime Villain Are You?</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Press+Start+2P&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <style>
-    body, html {
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
-      font-family: 'Roboto', sans-serif;
-      background: #0b0b0b;
-      color: #fff;
+      background: radial-gradient(ellipse at center, #1a0037 0%, #000 100%);
       overflow: hidden;
+      font-family: 'Roboto', sans-serif;
+      color: #fff;
     }
-
     #particles-js {
-      position: absolute;
-      width: 100%;
-      height: 100%;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
       z-index: -1;
-      background: #0b0b0b;
     }
-
     .game-container {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      text-align: center;
-      padding: 20px;
-      animation: fadeIn 1.2s ease-in-out;
+      animation: fadeIn 1s;
     }
-
+    @keyframes fadeIn { from { opacity: 0;} to { opacity: 1;} }
     .game-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.8rem;
-      color: crimson;
-      text-shadow: 0 0 15px crimson, 0 0 30px red;
-      margin-bottom: 20px;
-      animation: pulse 2s infinite;
+      font-family: 'Orbitron', 'Press Start 2P', cursive;
+      font-size: 2.7rem;
+      color: #ff1e56;
+      text-shadow: 0 0 14px #ff1e56, 0 0 30px #fff, 0 0 2px #fff;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+      animation: pulse 2.2s infinite;
     }
-
-    .start-btn {
+    @keyframes pulse {
+      0%, 100% { filter: brightness(1);}
+      50% { filter: brightness(1.3);}
+    }
+    .progress-bar-bg {
+      width: 340px;
+      height: 18px;
+      background: #2c003e;
+      border-radius: 10px;
+      margin: 0 auto 25px;
+      box-shadow: 0 0 12px #ff1e56;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg,#ff1e56,#ffac41);
+      width: 0%;
+      border-radius: 10px;
+      transition: width 0.5s cubic-bezier(.46,.03,.52,.96);
+      box-shadow: 0 0 10px #ffac41;
+    }
+    .start-btn, .option-btn, .restart-btn {
+      font-family: 'Orbitron', 'Press Start 2P', cursive;
       font-size: 1.2rem;
-      background: linear-gradient(135deg, transparent, crimson);
-      border: 2px solid crimson;
-      color: crimson;
-      padding: 12px 30px;
+      background: rgba(31, 0, 47, 0.8);
+      border: 2px solid #ff1e56;
+      color: #fff;
+      padding: 18px 30px;
+      margin: 12px 0;
       border-radius: 10px;
       cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 0 10px crimson;
+      transition: all 0.18s, box-shadow 0.3s;
+      box-shadow: 0 0 24px #ff1e56;
+      text-shadow: 0 0 4px #fff;
+      letter-spacing: 1.5px;
+      outline: none;
+      position: relative;
     }
-
-    .start-btn:hover {
-      background: crimson;
+    .option-btn:hover, .start-btn:hover, .restart-btn:hover {
+      background: #ff1e56;
       color: #fff;
-      box-shadow: 0 0 25px crimson;
+      box-shadow: 0 0 32px #fff;
+      border-color: #fff;
+      transform: scale(1.05);
     }
-
-    .quiz-box {
-      display: none;
+    .quiz-box, .result-box {
+      display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      max-width: 600px;
+      background: rgba(30, 0, 64, 0.96);
+      padding: 36px 32px 30px 32px;
+      border-radius: 20px;
+      box-shadow: 0 0 28px #ff1e56, 0 0 4px #fff;
+      min-width: 340px;
+      max-width: 94vw;
       margin: auto;
-      background: rgba(30, 30, 30, 0.95);
-      padding: 35px;
-      border-radius: 15px;
-      box-shadow: 0 0 25px crimson;
-      animation: slideIn 0.8s ease-in-out;
+      animation: fadeIn 0.9s;
+      margin-bottom: 18px;
     }
-
     .question {
-      font-size: 1.4rem;
-      margin-bottom: 20px;
-      color: #ffdddd;
+      font-size: 1.2rem;
+      margin-bottom: 24px;
+      font-family: 'Press Start 2P', 'Orbitron', cursive;
+      letter-spacing: 1.2px;
+      text-shadow: 0 0 3px #ffac41;
     }
-
-    .options button {
-      background: #2a2a2a;
-      color: #fff;
-      border: 2px solid crimson;
-      padding: 12px;
-      margin: 10px 0;
+    .options {
       width: 100%;
-      border-radius: 6px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 0 10px #111;
     }
-
-    .options button:hover {
-      background: crimson;
-      color: white;
-      box-shadow: 0 0 20px crimson;
+    .options button {
+      width: 100%;
+      margin-bottom: 16px;
     }
-
-    .result-box {
-      display: none;
-      padding: 20px;
-      text-align: center;
-      animation: fadeIn 1.2s ease-in-out;
-    }
-
     .result-box img {
-      width: 250px;
-      margin: 20px 0;
-      border-radius: 10px;
-      box-shadow: 0 0 20px crimson;
+      width: 270px;
+      margin: 25px 0 15px 0;
+      border-radius: 16px;
+      box-shadow: 0 0 25px #ff1e56;
+      background: #fff;
+      object-fit: contain;
+      border: 3px solid #ff1e56;
+      animation: villainPop 0.8s;
     }
-
+    @keyframes villainPop {
+      0% { transform: scale(0.5) rotate(-10deg);}
+      80% { transform: scale(1.1) rotate(2deg);}
+      100% { transform: scale(1) rotate(0);}
+    }
     .result-box h2 {
-      font-size: 2.2rem;
-      color: crimson;
-      margin-bottom: 10px;
-      text-shadow: 0 0 10px crimson;
+      font-size: 1.5rem;
+      color: #ff1e56;
+      font-family: 'Orbitron', 'Press Start 2P', cursive;
+      text-shadow: 0 0 7px #fff;
+      margin: 0 0 18px 0;
     }
-
-    .result-box p {
-      font-size: 1.1rem;
-      color: #ddd;
+    .restart-btn {
+      margin-top: 26px;
+      border-color: #ffac41;
+      box-shadow: 0 0 18px #ffac41;
+      background: rgba(255, 172, 65, 0.15);
+      color: #ffac41;
     }
-
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
+    .restart-btn:hover {
+      background: #ffac41;
+      color: #1a0037;
+      border-color: #fff;
     }
-
-    @keyframes slideIn {
-      from {transform: translateY(30px); opacity: 0;}
-      to {transform: translateY(0); opacity: 1;}
-    }
-
-    @keyframes pulse {
-      0% {text-shadow: 0 0 15px crimson;}
-      50% {text-shadow: 0 0 30px red;}
-      100% {text-shadow: 0 0 15px crimson;}
+    @media (max-width: 400px) {
+      .quiz-box, .result-box { padding: 18px 4vw; min-width: unset;}
     }
   </style>
 </head>
@@ -150,20 +156,23 @@
 
   <div class="game-container" id="start-screen">
     <h1 class="game-title">Which Anime Villain Are You?</h1>
-    <button class="start-btn" onclick="startQuiz()">Start New Game</button>
+    <button class="start-btn" onclick="startQuiz()">START GAME</button>
   </div>
 
-  <div class="quiz-box" id="quiz-box">
+  <div class="quiz-box" id="quiz-box" style="display:none;">
+    <div class="progress-bar-bg">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
     <div class="question" id="question"></div>
     <div class="options">
-      <button onclick="selectAnswer('A')" id="btnA"></button>
-      <button onclick="selectAnswer('B')" id="btnB"></button>
-      <button onclick="selectAnswer('C')" id="btnC"></button>
-      <button onclick="selectAnswer('D')" id="btnD"></button>
+      <button class="option-btn" onclick="selectAnswer('A')" id="btnA"></button>
+      <button class="option-btn" onclick="selectAnswer('B')" id="btnB"></button>
+      <button class="option-btn" onclick="selectAnswer('C')" id="btnC"></button>
+      <button class="option-btn" onclick="selectAnswer('D')" id="btnD"></button>
     </div>
   </div>
 
-  <div class="result-box" id="result"></div>
+  <div class="result-box" id="result" style="display:none;"></div>
 
   <script>
     particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
@@ -171,7 +180,9 @@
     const startScreen = document.getElementById("start-screen");
     const quizBox = document.getElementById("quiz-box");
     const resultBox = document.getElementById("result");
+    const progressBar = document.getElementById("progress-bar");
 
+    // Replace this with your full questions set!
     const questions = [
       {
         q: "You just gained power overnight. What's the first thing you'd do?",
@@ -184,45 +195,40 @@
         },
         evil: { A: 0, B: 2, C: 1, D: 3 }
       },
-      // Add more questions here following the same format
+      {
+        q: "What's your favorite pastime?",
+        options: ["Strategizing", "Training", "Reading", "Messing with people"],
+        scores: {
+          A: { aizen: 3, light: 1 },
+          B: { madara: 2, frieza: 1 },
+          C: { light: 3, geto: 1 },
+          D: { dio: 2, sukuna: 2 }
+        },
+        evil: { A: 1, B: 1, C: 0, D: 3 }
+      },
+      // ...add more questions!
     ];
 
     const villains = {
-      madara: {
-        name: "Madara Uchiha",
-        base: "Base",
-        mid: "Rinnegan",
-        final: "Six Paths",
-        quote: "Wake up to reality...",
-        img: "https://i.imgur.com/zL8xGfg.png"
-      },
-      dio: {
-        name: "Dio Brando",
-        base: "Vampire",
-        mid: "The World",
-        final: "ZA WARUDO: Over Heaven",
-        quote: "You thought it was someone else? It was me, Dio!",
-        img: "https://i.imgur.com/zR7BeVZ.png"
-      },
-      frieza: {
-        name: "Frieza",
-        base: "Base",
-        mid: "Final Form",
-        final: "Golden Frieza",
-        quote: "You dare defy the emperor?!",
-        img: "https://i.imgur.com/Kh3Ht0Q.png"
-      },
-      // Add more villains here
+      madara: { name: "Madara Uchiha", base: "Base", mid: "Rinnegan", final: "Six Paths", quote: "Wake up to reality...", img: "https://i.imgur.com/zL8xGfg.png" },
+      dio: { name: "Dio Brando", base: "Vampire", mid: "The World", final: "ZA WARUDO: Over Heaven", quote: "You thought it was someone else? It was me, Dio!", img: "https://i.imgur.com/zR7BeVZ.png" },
+      frieza: { name: "Frieza", base: "Base", mid: "Final Form", final: "Golden Frieza", quote: "You dare defy the emperor?!", img: "https://i.imgur.com/Kh3Ht0Q.png" },
+      aizen: { name: "Sosuke Aizen", base: "Shinigami", mid: "Hogyoku", final: "Butterfly", quote: "Admiration is the emotion farthest from understanding.", img: "https://i.imgur.com/yourAizenImage.png" },
+      light: { name: "Light Yagami", base: "Student", mid: "Kira", final: "God of the New World", quote: "I am Justice!", img: "https://i.imgur.com/yourLightImage.png" },
+      sukuna: { name: "Ryomen Sukuna", base: "One Finger", mid: "Four Fingers", final: "Full Power", quote: "Know your place, fool.", img: "https://i.imgur.com/yourSukunaImage.png" },
+      geto: { name: "Suguru Geto", base: "Student", mid: "Curse User", final: "Pseudo-Geto", quote: "Only those who possess an inordinate amount of power have the right to decide how it’s used.", img: "https://i.imgur.com/yourGetoImage.png" }
     };
-
-    let current = 0;
-    let villainScores = {};
-    let evilPoints = 0;
+    let current = 0, villainScores = {}, evilPoints = 0;
 
     function startQuiz() {
+      villainScores = {};
+      evilPoints = 0;
+      current = 0;
       startScreen.style.display = "none";
+      resultBox.style.display = "none";
       quizBox.style.display = "flex";
       loadQuestion();
+      updateProgress();
     }
 
     function loadQuestion() {
@@ -232,18 +238,16 @@
       document.getElementById("btnB").textContent = q.options[1];
       document.getElementById("btnC").textContent = q.options[2];
       document.getElementById("btnD").textContent = q.options[3];
+      updateProgress();
     }
 
     function selectAnswer(letter) {
       const scoreSet = questions[current].scores[letter];
-      for (let v in scoreSet) {
-        if (!villainScores[v]) villainScores[v] = 0;
-        villainScores[v] += scoreSet[v];
+      for (let villain in scoreSet) {
+        villainScores[villain] = (villainScores[villain] || 0) + scoreSet[villain];
       }
-
       evilPoints += questions[current].evil[letter];
       current++;
-
       if (current < questions.length) {
         loadQuestion();
       } else {
@@ -251,23 +255,25 @@
       }
     }
 
+    function updateProgress() {
+      let percent = ((current) / questions.length) * 100;
+      progressBar.style.width = percent + "%";
+    }
+
     function showResult() {
       quizBox.style.display = "none";
-      resultBox.style.display = "block";
-
+      resultBox.style.display = "flex";
       let topVillain = Object.entries(villainScores).sort((a, b) => b[1] - a[1])[0][0];
-      let result = villains[topVillain];
-
+      let villain = villains[topVillain];
+      let form = evilPoints <= 6 ? villain.base : evilPoints <= 11 ? villain.mid : villain.final;
       resultBox.innerHTML = `
-        <h2>You Are ${result.name}!</h2>
-        <img src="${result.img}" alt="${result.name}"/>
-        <p><strong>Forms:</strong> ${result.base} → ${result.mid} → ${result.final}</p>
-        <p><em>${result.quote}</em></p>
-        <p>Your evil score: ${evilPoints} 🔥</p>
-        <button class="start-btn" onclick="location.reload()">Play Again</button>
+        <h2>You Are ${villain.name} (${form})</h2>
+        <img src="${villain.img}" alt="${villain.name}">
+        <p style="font-size:1.08rem;"><em>“${villain.quote}”</em></p>
+        <button class="restart-btn" onclick="startQuiz()">Play Again</button>
       `;
+      progressBar.style.width = "100%";
     }
   </script>
 </body>
-        </html>
-  
+  </html>
