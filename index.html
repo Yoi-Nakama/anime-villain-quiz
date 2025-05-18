@@ -135,6 +135,14 @@
       text-shadow: 0 0 7px #fff;
       margin: 0 0 18px 0;
     }
+    .result-form-label {
+      font-size: 1.1rem;
+      color: #ffac41;
+      font-family: 'Orbitron', 'Press Start 2P', cursive;
+      margin-bottom: 7px;
+      margin-top: 0;
+      text-shadow: 0 0 4px #fff;
+    }
     .restart-btn {
       margin-top: 26px;
       border-color: #ffac41;
@@ -155,6 +163,8 @@
 <body>
   <div id="particles-js"></div>
   <audio id="sfx" src="https://cdn.pixabay.com/audio/2022/03/15/audio_119bfae6e4.mp3"></audio>
+  <!-- New: Audio for villain result music -->
+  <audio id="villain-music"></audio>
   <div class="game-container" id="start-screen">
     <h1 class="game-title">Which Anime Villain Are You?</h1>
     <button class="start-btn" onclick="playSound();startQuiz()">START GAME</button>
@@ -176,7 +186,7 @@
     particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
     function playSound() { document.getElementById('sfx').currentTime=0; document.getElementById('sfx').play(); }
 
-    // Questions and answer options
+    // Questions and answer options (unchanged)
     const questions = [
       {
         q: "You just gained power overnight. What’s the first thing you’d do?",
@@ -225,86 +235,231 @@
       }
     ];
 
-    // Villain info
+    // NEW: Villain result forms. Each villain has 2-3 forms, can easily add more!
+    // Music can be any public file (or blank if not used).
+    const villainForms = {
+      madara: [
+        {
+          name: "Madara, God of War",
+          image: "https://i.imgur.com/zL8xGfg.png",
+          quote: "Wake up to reality. Nothing ever goes as planned in this world.",
+          bgColor: "#2f1434",
+          music: "https://cdn.pixabay.com/audio/2022/10/16/audio_12b4bc1c8d.mp3"
+        },
+        {
+          name: "Madara, Mastermind",
+          image: "https://i.imgur.com/zL8xGfg.png",
+          quote: "The longer you live, the more you realize that reality is just made of pain, suffering and emptiness.",
+          bgColor: "#450a32",
+          music: ""
+        }
+      ],
+      sukuna: [
+        {
+          name: "Sukuna, King of Curses",
+          image: "https://i.imgur.com/iRIe5g1.png",
+          quote: "Know your place, fool.",
+          bgColor: "#44141a",
+          music: "https://cdn.pixabay.com/audio/2022/10/16/audio_12b4bc1c8d.mp3"
+        },
+        {
+          name: "Sukuna, Savage Smile",
+          image: "https://i.imgur.com/iRIe5g1.png",
+          quote: "You dare defy me with that feeble power?",
+          bgColor: "#2c0e15",
+          music: ""
+        }
+      ],
+      aizen: [
+        {
+          name: "Aizen, Calm Strategist",
+          image: "https://i.imgur.com/2T8s4aA.png",
+          quote: "Admiration is the emotion farthest from understanding.",
+          bgColor: "#19304e",
+          music: ""
+        },
+        {
+          name: "Aizen, Godform",
+          image: "https://i.imgur.com/2T8s4aA.png",
+          quote: "You can’t comprehend my vision.",
+          bgColor: "#251a47",
+          music: ""
+        }
+      ],
+      light: [
+        {
+          name: "Light Yagami, Justice-Twisted",
+          image: "https://i.imgur.com/UvQwRNC.png",
+          quote: "I am Justice!",
+          bgColor: "#3b211f",
+          music: ""
+        },
+        {
+          name: "Light Yagami, God Complex",
+          image: "https://i.imgur.com/UvQwRNC.png",
+          quote: "I will become the god of the new world.",
+          bgColor: "#4e1a1a",
+          music: ""
+        }
+      ],
+      muzan: [
+        {
+          name: "Muzan, Demon King",
+          image: "https://i.imgur.com/aO6w1Cw.png",
+          quote: "I am a perfect being.",
+          bgColor: "#212424",
+          music: ""
+        },
+        {
+          name: "Muzan, Cold Manipulator",
+          image: "https://i.imgur.com/aO6w1Cw.png",
+          quote: "Fear me for eternity.",
+          bgColor: "#3c1a1a",
+          music: ""
+        }
+      ],
+      geto: [
+        {
+          name: "Geto Suguru, Cursed Idealist",
+          image: "https://i.imgur.com/w6P0w5x.png",
+          quote: "Only those with power have the right to decide how it’s used.",
+          bgColor: "#1b2631",
+          music: ""
+        },
+        {
+          name: "Geto Suguru, Sorcerer Supreme",
+          image: "https://i.imgur.com/w6P0w5x.png",
+          quote: "Weakness must be purged.",
+          bgColor: "#472a2a",
+          music: ""
+        }
+      ],
+      dabi: [
+        {
+          name: "Dabi, Blue Flame",
+          image: "https://i.imgur.com/l9sYXJb.png",
+          quote: "The present you’re so proud of is built on the sacrifices of the past.",
+          bgColor: "#23334e",
+          music: ""
+        },
+        {
+          name: "Dabi, Scorched Soul",
+          image: "https://i.imgur.com/l9sYXJb.png",
+          quote: "Let it all burn.",
+          bgColor: "#191959",
+          music: ""
+        }
+      ],
+      griffith: [
+        {
+          name: "Griffith, Betrayer",
+          image: "https://i.imgur.com/CXkL6kM.png",
+          quote: "If you’re alone… become the king.",
+          bgColor: "#3e343a",
+          music: ""
+        },
+        {
+          name: "Griffith, Hawk of Light",
+          image: "https://i.imgur.com/CXkL6kM.png",
+          quote: "I have a dream that must be fulfilled.",
+          bgColor: "#c7c3d2",
+          music: ""
+        }
+      ],
+      frieza: [
+        {
+          name: "Frieza, Prideful Tyrant",
+          image: "https://i.imgur.com/Kh3Ht0Q.png",
+          quote: "You dare defy the emperor?!",
+          bgColor: "#251a30",
+          music: ""
+        },
+        {
+          name: "Frieza, Golden Emperor",
+          image: "https://i.imgur.com/Kh3Ht0Q.png",
+          quote: "Behold my true power!",
+          bgColor: "#e5c800",
+          music: ""
+        }
+      ],
+      dio: [
+        {
+          name: "Dio Brando, Devilish Mastermind",
+          image: "https://i.imgur.com/zR7BeVZ.png",
+          quote: "You thought it was someone else? It was me, Dio!",
+          bgColor: "#3b1f3b",
+          music: ""
+        },
+        {
+          name: "Dio Brando, Immortal",
+          image: "https://i.imgur.com/zR7BeVZ.png",
+          quote: "I reject my humanity!",
+          bgColor: "#2a1a2a",
+          music: ""
+        }
+      ]
+    };
+
+    // Villain info (for anime, vibe)
     const villains = [
       {
         key: "madara",
         name: "Madara Uchiha",
         anime: "Naruto",
-        img: "https://i.imgur.com/zL8xGfg.png",
-        quote: "Wake up to reality. Nothing ever goes as planned in this world.",
         vibe: "God complex, war-driven, mastermind"
       },
       {
         key: "sukuna",
         name: "Sukuna",
         anime: "Jujutsu Kaisen",
-        img: "https://i.imgur.com/iRIe5g1.png",
-        quote: "Know your place, fool.",
         vibe: "Chaotic, prideful, savage"
       },
       {
         key: "aizen",
         name: "Sosuke Aizen",
         anime: "Bleach",
-        img: "https://i.imgur.com/2T8s4aA.png",
-        quote: "Admiration is the emotion farthest from understanding.",
         vibe: "Calm genius, manipulative"
       },
       {
         key: "light",
         name: "Light Yagami",
         anime: "Death Note",
-        img: "https://i.imgur.com/UvQwRNC.png",
-        quote: "I am Justice!",
         vibe: "Justice-twisted, god complex"
       },
       {
         key: "muzan",
         name: "Muzan Kibutsuji",
         anime: "Demon Slayer",
-        img: "https://i.imgur.com/aO6w1Cw.png",
-        quote: "I am a perfect being.",
         vibe: "Heartless, controlling"
       },
       {
         key: "geto",
         name: "Suguru Geto",
         anime: "Jujutsu Kaisen",
-        img: "https://i.imgur.com/w6P0w5x.png",
-        quote: "Only those with power have the right to decide how it’s used.",
         vibe: "Anti-heroic, cursed idealist"
       },
       {
         key: "dabi",
         name: "Dabi (Toya Todoroki)",
         anime: "My Hero Academia",
-        img: "https://i.imgur.com/l9sYXJb.png",
-        quote: "The present you’re so proud of is built on the sacrifices of the past.",
         vibe: "Burned emotions, rebellion"
       },
       {
         key: "griffith",
         name: "Griffith",
         anime: "Berserk",
-        img: "https://i.imgur.com/CXkL6kM.png",
-        quote: "If you’re alone… become the king.",
         vibe: "Betrayal, ambition"
       },
       {
         key: "frieza",
         name: "Frieza",
         anime: "Dragon Ball Z",
-        img: "https://i.imgur.com/Kh3Ht0Q.png",
-        quote: "You dare defy the emperor?!",
         vibe: "Ruthless conqueror, prideful tyrant"
       },
       {
         key: "dio",
         name: "Dio Brando",
         anime: "JoJo’s Bizarre Adventure",
-        img: "https://i.imgur.com/zR7BeVZ.png",
-        quote: "You thought it was someone else? It was me, Dio!",
         vibe: "Charismatic, immortal, devilish mastermind"
       }
     ];
@@ -359,6 +514,7 @@
       document.getElementById("start-screen").style.display = "none";
       document.getElementById("result").style.display = "none";
       document.getElementById("quiz-box").style.display = "flex";
+      stopVillainMusic();
       loadQuestion();
       updateProgress();
     }
@@ -374,7 +530,6 @@
     }
 
     function selectAnswer(letter) {
-      // Add points
       const mapping = scoring[current][letter];
       for (const vKey in mapping) {
         villainScores[vKey] = (villainScores[vKey] || 0) + mapping[vKey];
@@ -397,16 +552,39 @@
       document.getElementById("result").style.display = "flex";
       // Find top villain by score
       let top = Object.entries(villainScores).sort((a, b) => b[1] - a[1])[0];
-      let villain = villainMap[top[0]];
+      let villainKey = top[0];
+      let villain = villainMap[villainKey];
+      // Pick a random form for this villain
+      let forms = villainForms[villainKey];
+      let form = forms[Math.floor(Math.random() * forms.length)];
+      // Optionally play music
+      stopVillainMusic();
+      if (form.music) {
+        const music = document.getElementById("villain-music");
+        music.src = form.music;
+        music.volume = 0.66;
+        music.play();
+      }
+      // Set result card background color
+      document.getElementById("result").style.background = form.bgColor || "#1a0037";
+      // Show result
       document.getElementById("result").innerHTML = `
+        <span class="result-form-label">${form.name}</span>
         <h2>You Are ${villain.name}!</h2>
-        <img src="${villain.img}" alt="${villain.name}">
+        <img src="${form.image}" alt="${villain.name}">
         <p style="font-size:1rem;"><b>Anime:</b> ${villain.anime}</p>
-        <p><em>“${villain.quote}”</em></p>
+        <p><em>“${form.quote}”</em></p>
         <p style="color:#ffac41;margin:14px 0 4px;"><b>Vibe:</b> ${villain.vibe}</p>
         <button class="restart-btn" onclick="playSound();startQuiz()">Play Again</button>
       `;
       document.getElementById("progress-bar").style.width = "100%";
+    }
+
+    function stopVillainMusic() {
+      let music = document.getElementById("villain-music");
+      music.pause();
+      music.currentTime = 0;
+      music.src = "";
     }
   </script>
 </body>
